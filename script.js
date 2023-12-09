@@ -1,4 +1,3 @@
-let form = document.getElementById('calculadora');
 const CALCULAR = document.getElementById('calcular');
 const ERROR = document.getElementById('error');
 const FLU = document.getElementById('flu');
@@ -76,7 +75,6 @@ function calcFlujo(peso) {
 
     return flujo;
 }
-
 
 
 
