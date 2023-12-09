@@ -5,11 +5,17 @@ body {
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
     color: #3E363F;
+    /**/
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 #contenedor {
-    width: 900px;
-    height: 500px;
+    width: 800px;
+    height: 300px;
     text-align: center;
     /* Estas 3 lineas se encargan de centrar el div vertical y horizontalmente */
     position: absolute;
@@ -20,32 +26,45 @@ body {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
 }
-
+#contenedor2 {
+    width: 800px;
+    height: 150px;
+    text-align: top;
+    inset: 0;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+}
 #calculadora {
     background: white;
-    /* Con estas 3 lineas vamos a hacer que los divs queden lado a lado */
     width: 50%;
     height: 100%;
-    float: left;
+    margin: auto;
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #detalle {
     background: #4144ff;
-    /* Con estas 3 lineas vamos a hacer que los divs queden lado a lado */
-    width: 50%;
+    width: 100%;
     height: 100%;
     float: left;
     color: #f6f5f7;
 }
 
-.contenido {
+/*.contenido {
     /* Estas tres lineas van a centrar el contenido verticalmente dentro de cada div */
-    position: relative;
+   /* position: relative;
     top: 50%;
     transform: translateY(-50%);
     overflow: hidden;
     padding: 40px;
-}
+}*/
 
 input {
     width: 70%;
