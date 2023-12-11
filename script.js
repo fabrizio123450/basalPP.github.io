@@ -1,100 +1,92 @@
 const CALCULAR = document.getElementById('calcular');
 const ERROR = document.getElementById('error');
+const VOL = document.getElementById('vol');
 const FLU = document.getElementById('flu');
 const MAN = document.getElementById('man');
 const botonCambiarColor = document.getElementById('cambiarColor');
 const elementoDetalle = document.getElementById('detalle');
 const elementoboton = document.getElementById('calcular');
+const CONTENEDOR = document.getElementById('contenedor2')
+const CAL = {
+    hol: document.getElementById('hol'),
+    menos30: document.getElementById('ten'),
+    msc: document.getElementById('msc'),
+    mas30: document.getElementById('mte')
+}
 CALCULAR.addEventListener('click', () => {
-    const DATO = document.getElementById('peso').value
+    const DATO = document.getElementById('peso').valueAsNumber
     //validamos que se cargue un dato:
     if (DATO > 0) {
         ERROR.style.display = 'none';
         let flujo = calcFlujo(DATO);
+        VOL.style.display = 'block';
         FLU.style.display = 'block';
         MAN.style.display = 'block';
-        
+
         if (DATO <= 30) {
-            let mantenimiento = flujo * 1.5;
-            FLU.innerHTML = flujo + ' cc/hr';
+            let mantenimiento = (flujo / 24) * 1.5;
+            VOL.innerHTML = 'Volumen ' + flujo + ' cc';
+            FLU.innerHTML = 'flujo ' + (flujo / 24).toFixed(0) + ' cc/hr';
             MAN.innerHTML = 'm+m/2 ' + mantenimiento + ' cc/hr';
+            CONTENEDOR.style.display = 'block'
+            CAL.menos30.style.display = 'block'
+            CAL.hol.style.display = 'block'
+            CAL.mas30.style.display = 'none'
+            CAL.msc.style.display = 'none'
         } else {
-            let SC = flujo * 1500;
+            VOL.style.display = 'none';
+            let SC = (flujo * 1500).toFixed(0);
             FLU.innerHTML = 'SC*1500 ' + SC + ' cc';
-            SC = flujo * 2000;
+            SC = (flujo * 2000).toFixed(0);
             MAN.innerHTML = 'SC*2000 ' + SC + ' cc';
+            CONTENEDOR.style.display = 'block'
+            CAL.mas30.style.display = 'block'
+            CAL.msc.style.display = 'block'
+            CAL.menos30.style.display = 'none'
+            CAL.hol.style.display = 'none'
         }
     } else {
         ERROR.style.display = 'block';
+        VOL.style.display = 'none';
         FLU.style.display = 'none';
         MAN.style.display = 'none';
     }
-    
+
 });
 //calcula el flujo
 function calcFlujo(peso) {
     let flujo = 0;
-    let uSegmento = 0;
-    let pSegmento = 0;
     const calculos = {
-        segmento20a30: () => {
-            uSegmento = peso - 20;
-            pSegmento = peso - (uSegmento + 10);
-            flujo = (pSegmento*100) + (pSegmento*50) + (uSegmento*20);
-            flujo/=24;
-            return  Math.round(flujo);
-        },
-        mayor10: () => {
-            uSegmento = peso-10;
-            pSegmento = peso - uSegmento;
-            flujo = Math.round(((pSegmento*100 )+(uSegmento*50) )/24);
-            return  flujo;
-        },
-        menorIgual10: () => {
-            flujo =  Math.round((peso * 100) / 24)
-            return  flujo;
-        },
-        mayor30: () => {
-            pSegmento = (peso * 4) + 7;
-            uSegmento = parseInt(peso)+90;
-            pSegmento/= uSegmento;
-            flujo = pSegmento.toFixed(2);
-            return flujo;
-        }
+        segmento20a30: () => 1500 + ((peso - 20) * 20),
+        mayor10: () => 1000 + ((peso - 10) * 50),
+        menorIgual10: () => peso * 100,
+        mayor30: () => (((peso * 4) + 7) / (peso + 90)).toFixed(2)
     };
-
-    if (peso > 20 && peso <= 30) {
-        flujo = calculos.segmento20a30();
-    } else if (peso > 10 && peso <=20) {
-        flujo = calculos.mayor10();
-    } else if (peso <= 10) {
-        flujo = calculos.menorIgual10();
-    } else if (peso > 30) {
-        flujo = calculos.mayor30();
-    }
+    flujo = (peso > 20 && peso <= 30) ? calculos.segmento20a30() :
+        (peso > 10 && peso <= 20) ? calculos.mayor10() : (peso <= 10) ? calculos.menorIgual10() :
+            calculos.mayor30()
 
     return flujo;
 }
 
 
-
-/*botonCambiarColor.addEventListener('click', () => {
-    // Genera un color aleatorio en formato hexadecimal
-    const colorAleatorio = getRandomColor();
-
+//Cambio de color la interfaz
+botonCambiarColor.addEventListener('click', () => {
    
+    const colorAleatorio = getRandomColor();
     elementoDetalle.style.backgroundColor = colorAleatorio;
     elementoboton.style.backgroundColor = colorAleatorio;
-    
+    VOL.style.color = colorAleatorio;
+    FLU.style.color = colorAleatorio;
+    MAN.style.color = colorAleatorio;
+
 });
 
 function getRandomColor() {
-    // Genera componentes RGB aleatorios en el rango de colores oscuros
     const r = Math.floor(Math.random() * 128);
-    const g = Math.floor(Math.random() * 128); 
-    const b = Math.floor(Math.random() * 128); 
+    const g = Math.floor(Math.random() * 128);
+    const b = Math.floor(Math.random() * 128);
 
-    // Convierte los componentes RGB en una cadena hexadecimal
     const colorHex = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
     return colorHex;
-}*/
+}

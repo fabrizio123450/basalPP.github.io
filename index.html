@@ -10,11 +10,19 @@
     <div id="contenedor2">
         <div id="detalle">
             <div class="contenido">
-                <h1>¿Como se calcula?</h1>
-                <ul>
-                    <li>De 0kg a 10kg, se calcula 100cc por cada kilo.</li>
-                    <li>Se suman 50cc por cada kilo de peso por arriba de 10kg, hasta 20kg</li>
-                    <li>De 20kg para arriba, se suman 20cc por cada kilo adicional</li>
+                <h1>¿Como se calculo? <a class="enlace" id="cambiarColor">CLICK ME</a> <b id="hol">Holliday-Segar</b><b id="msc"> superficie corporal</b></h1>
+                <ul id="ten">
+                    <li>Cuando el niño tiene hasta 10kg, se calcula 100cc por cada kilo.</li>
+                    <li>Luego, por cada kilo arriba de 10 y hasta 20kg, se suman 50cc</li>
+                    <li>Finalmente, por cada kilo arriba de 20kg se suman 20cc</li>
+                    <li>Con eso se obtiene el volumen diario</li> 
+                    <li>Para el flujo horario dividimos el volumen diario por 24</li>
+                    <li>Y para el valor conocido como m+m/2 es flujo por 1.5</li>  
+                </ul>
+                <ul id="mte">
+                    <li>Cuando el niño pesa mas de 30kg</li>
+                    <li>Se multiplica SC (Superficie Corporal) por 2000 o 1500 para hallar el volumen diario</li>
+                    <li>Superficie Corporal es igual a ( (peso * 4) + 7) / (peso + 90) </li>
                 </ul>
             </div>
         </div>
@@ -27,12 +35,12 @@
                 <input class="item" id="peso" type="number" placeholder="Peso en kg" />
                 <p class="item" id="error">* Debe completar todos los datos</p>
                 <button class="item" id="calcular">Calcular</button>
-                <p class="item resultado" id="flu">71cc/h</p>
-                <p class="item resultado" id="man">m+m/2 : 105cc/h</p>
+                <p class="item resultado" id="vol"></p>
+                <p class="item resultado" id="flu"></p>
+                <p class="item resultado" id="man"></p>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

@@ -15,11 +15,11 @@ body {
 
 #contenedor {
     width: 800px;
-    height: 300px;
+    height: 350px;
     text-align: center;
     /* Estas 3 lineas se encargan de centrar el div vertical y horizontalmente */
     position: absolute;
-    inset: 0 0 0 0 ;
+    inset: 10% 0 0 0 ;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
@@ -29,7 +29,7 @@ body {
 
 #contenedor2 {
     width: 800px;
-    height: 150px;
+    height: 170px;
     text-align: top;
     inset: 0;
     margin: auto;
@@ -37,6 +37,7 @@ body {
     overflow: hidden;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
+    display: none;
 }
 
 #calculadora {
@@ -53,7 +54,19 @@ body {
     float: left;
     color: #f6f5f7;
 }
+#hol{
+    display: none;
+}
+#msc{
+    display: none;
+}
 
+#ten{
+    display: none;
+}
+#mte{
+    display: none;
+}
 input {
     width: 70%;
     padding: 12px 15px;
@@ -75,7 +88,13 @@ button {
     letter-spacing: 1px;
     transition: transform 20ms ease-in;
 }
-
+.enlace {
+    padding: 5px 10px;
+    font-size: 12px; 
+    cursor: pointer; 
+    text-decoration: underline;
+  }
+  
 button:active {
     transform: scale(0.95);
 }
@@ -108,14 +127,17 @@ button:active {
         height: 100%;
         float: left;
     }
+    #contenedor2 {
+        height: 220px;
+    }
 
     #contenedor {
         width: 450px;
-        height: 300px;
+        height: 350px;
         text-align: center;
         /* Estas 3 lineas se encargan de centrar el div vertical y horizontalmente */
         position: absolute;
-        inset: 0 0 0 0 ;
+        inset: 25% 0 0 0 ;
         margin: auto;
         border-radius: 10px;
         overflow: hidden;
