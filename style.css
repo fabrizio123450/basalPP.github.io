@@ -113,7 +113,7 @@ button:active {
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 456px) {
     #detalle {
         background: #4144ff;
         width: 100%;
